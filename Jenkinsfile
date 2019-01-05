@@ -9,9 +9,7 @@ node {
       bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
       } 
    }
-   stage('Deploy') {
-      'copy target/calcwebapp.war "C:\Program Files\Apache Software Foundation\Tomcat 8.5\webapps"'
-   }
+   
    stage('Email Notification'){
       mail bcc: '', body: '''Pipeline job completed
       Thanks
