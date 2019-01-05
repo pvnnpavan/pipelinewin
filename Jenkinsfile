@@ -6,12 +6,11 @@ node {
    }
    stage('MavenCompile') {
       // Run the maven build
-      if (isUnix()) {
-         sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
+      bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
       } 
    }
    stage('Deploy') {
-      sh 'cp target/calcwebapp.war /opt/tomcat/webapps/'
+      'copy target/calcwebapp.war "C:\Program Files\Apache Software Foundation\Tomcat 8.5\webapps"'
    }
    stage('Email Notification'){
       mail bcc: '', body: '''Pipeline job completed
